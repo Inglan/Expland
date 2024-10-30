@@ -11,8 +11,6 @@ jobs:
   linux:
     runs-on: "ubuntu-latest"
     name: 🐧 Linux
-    env:
-      SCONSFLAGS: mono_static=yes
     steps:
       - name: Clone repo
         uses: actions/checkout@v4
@@ -26,5 +24,5 @@ jobs:
       - name: Build
         run: |
           mkdir -p build/linux
-          ./godot -v --export "Linux" --headless ./build/linux/$exportName.x86_64
+          ./godot -v --export-release "Linux" --headless ./build/linux/$exportName.x86_64
           tree #for testing
