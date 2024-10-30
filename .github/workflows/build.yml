@@ -9,7 +9,6 @@ on:
 
 jobs:
   linux:
-    # Based on https://github.com/godotengine/godot-build-scripts/blob/3.x/build-linux/build.sh
     runs-on: "ubuntu-latest"
     name: 🐧 Linux
     env:
@@ -23,4 +22,9 @@ jobs:
           unzip Godot*.zip
           rm Godot*.zip
           mv Godot* godot
-          tree ./ #for testing
+          chmod +x ./godot
+      - name: Build
+        run: |
+          mkdir -p build/linux
+          ./godot -v --export "Linux" --headless ./build/linux/$exportName.x86_64
+          tree #for testing
